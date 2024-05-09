@@ -1,4 +1,4 @@
-//Вариант 10, задача 4.2
+//Вариант 10 задача 4.2
 #define _CRT_SECURE_NO_WARNINGS 
 #include "Students.h"
 #include <iostream>
