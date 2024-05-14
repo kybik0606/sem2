@@ -4,8 +4,8 @@
 #include <vector>
 using namespace std;
 
-
-Student::Student() {
+Student::Student() 
+{
     name = "";
     age = 0;
     course = 0;
@@ -18,7 +18,8 @@ Student::Student(const string& name, unsigned int age, unsigned int course, unsi
     : name(name), age(age), course(course), gender(gender), grades(grades), subject(subject) {}
 
 
-Student::Student(const Student& other) {
+Student::Student(const Student& other) 
+{
     name = other.name;
     age = other.age;
     course = other.course;
@@ -27,7 +28,8 @@ Student::Student(const Student& other) {
     subject = other.subject;
 }
 
-Student::Student(Student&& other) {
+Student::Student(Student&& other) 
+{
     name = move(other.name);
     age = move(other.age);
     course = move(other.course);
@@ -39,7 +41,8 @@ Student::Student(Student&& other) {
 Student::~Student()
 {};
 
-void Student::fill_data_of_student() {
+void Student::fill_data_of_student() 
+{
     cout << "Enter name: ";
     cin >> name;
     cout << "Enter age: ";
@@ -54,23 +57,28 @@ void Student::fill_data_of_student() {
     cin >> subject;
 }
 
-void Student::load_binaryfile() {
+void Student::load_binaryfile(int index) 
+{
     ifstream inFile("students.bin", ios::binary);
-    if (!inFile) {
+    if (!inFile)
+    {
         cout << "Error opening file" << endl;
         return;
     }
+    inFile.seekg(index * sizeof(Student));
     inFile.read(reinterpret_cast<char*>(this), sizeof(Student));
     inFile.close();
 }
 
-void Student::save_binaryfile() {
+void Student::save_binaryfile()
+{
     ofstream outFile("students.bin", ios::binary | ios::app);
     outFile.write(reinterpret_cast<const char*>(this), sizeof(Student));
     outFile.close();
 }
 
-void Student::output_to_the_screen() {
+void Student::output_to_the_screen() 
+{
     cout << "Name: " << name << endl;
     cout << "Age: " << age << endl;
     cout << "Course: " << course << endl;
@@ -79,26 +87,31 @@ void Student::output_to_the_screen() {
     cout << "Subject: " << subject << endl;
 }
 
-string Student::getName() const {
+string Student::get_name() const 
+{
     return name;
 }
 
-unsigned int Student::getAge() const {
+unsigned int Student::get_age() const 
+{
     return age;
 }
 
-unsigned int Student::getCourse() const {
+unsigned int Student::get_course() const 
+{
     return course;
 }
 
-unsigned int Student::getGender() const {
+unsigned int Student::get_gender() const 
+{
     return gender;
 }
 
-double Student::getGrades() const {
+double Student::get_grades() const
+{
     return grades;
 }
 
-string Student::getSubject() const {
+string Student::get_subject() const {
     return subject;
 }
