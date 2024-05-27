@@ -2,52 +2,63 @@
 
 using namespace std;
 
-vector::vector() {
+Vector::Vector() 
+{
     size = 0;
     vctr = nullptr;
 }
 
-vector::vector(int size) {
+Vector::Vector(int size) 
+{
     this->size = size;
     vctr = new int[size];
 }
 
-vector::vector(const vector& other) {
+Vector::Vector(const Vector& other) 
+{
     size = other.size;
     vctr = new int[size];
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < size; i++) 
+    {
         vctr[i] = other.vctr[i];
     }
 }
 
-vector::vector(const vector&& other) {
+Vector::Vector(const Vector&& other)
+{
     size = other.size;
     vctr = new int[size];
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < size; i++) 
+    {
         vctr[i] = other.vctr[i];
         other.vctr[i] = 0;
     }
 }
 
-vector::~vector() {
+Vector::~Vector() 
+{
     delete[] vctr;
 }
 
-void vector::set_vector() {
-    cout << "Ââåäèòå ðàçìåð âåêòîðà: ";
+void Vector::set_vector() 
+{
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ€Ð°Ð·Ð¼ÐµÑ€ Ð²ÐµÐºÑ‚Ð¾Ñ€Ð°: ";
     cin >> size;
     vctr = new int[size];
     cout << endl;
 }
 
-int vector::get_size() {
+int Vector::get_size() 
+{
     return size;
     cout << endl;
 }
 
-int vector::get_element(int index) {
-    if (index >= size) {
-        cout << "Âû âûøëè çà ïðåäåëû ðàçìåðíîñòè âåêòîðà." << endl;
+int Vector::get_element(int index)
+{
+    if (index >= size) 
+    {
+        cout << "Ð’Ñ‹ Ð²Ñ‹ÑˆÐ»Ð¸ Ð·Ð° Ð¿Ñ€ÐµÐ´ÐµÐ»Ñ‹ Ñ€Ð°Ð·Ð¼ÐµÑ€Ð½Ð¾ÑÑ‚Ð¸ Ð²ÐµÐºÑ‚Ð¾Ñ€Ð°." << endl;
         return 0;
     }
 
@@ -55,93 +66,106 @@ int vector::get_element(int index) {
     cout << endl;
 }
 
-void vector::set_element(int index, int number) {
-    if (index < size) {
+void Vector::set_element(int index, int number)
+{
+    if (index < size)
+    {
         vctr[index] = number;
         cout << endl;
     }
-    else {
-        cout << "Âû âûøëè çà ïðåäåëû ðàçìåðíîñòè âåêòîðà." << endl;
+    else
+    {
+        cout << "Ð’Ñ‹ Ð²Ñ‹ÑˆÐ»Ð¸ Ð·Ð° Ð¿Ñ€ÐµÐ´ÐµÐ»Ñ‹ Ñ€Ð°Ð·Ð¼ÐµÑ€Ð½Ð¾ÑÑ‚Ð¸ Ð²ÐµÐºÑ‚Ð¾Ñ€Ð°." << endl;
     }
 }
 
-void vector::actions_with_scalar() {
-    cout << "Ââåäèòå íîìåð îïåðàöèè, êîòîðóþ âû õîòèòå ïðîâåñòè ñî ñêàëÿðîì:\n1.'+'\n2.'-'\n3.'*'\n4.'" << endl << endl;
-    int choice;
-    cin >> choice;
-    cout << "Ââåäèòå çíà÷åíèå ñêàëÿðà: ";
-    int scalar;
-    cin >> scalar;
-    cout << endl;
-    switch (choice) {
-    case 1:
-        for (int i = 0; i < size; i++) {
-            vctr[i] += scalar;
-            cout << vctr[i] << " ";
-        }
-        break;
-    case 2:
-        for (int i = 0; i < size; i++) {
-            vctr[i] -= scalar;
-            cout << vctr[i] << " ";
-        }
-        break;
-    case 3:
-        for (int i = 0; i < size; i++) {
-            vctr[i] *= scalar;
-            cout << vctr[i] << " ";
-        }
-        break;
-    case 4:
-        for (int i = 0; i < size; i++) {
-            if (scalar != 0) {
-                vctr[i] = static_cast<double>(vctr[i]) / scalar;
-                cout << vctr[i] << " ";
-            }
-            else {
-                cout << "Îøèáêà: äåëåíèå íà íîëü." << endl;
-                break;
-            }
-        }
-        break;
+void Vector::add_scalar(int scalar) 
+{
+    cout << "Ð¿Ñ€Ð¸Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ " << scalar << ": ";
+    for (int i = 0; i < size; i++) 
+    {
+        vctr[i] += scalar;
     }
 }
 
-void vector::find_scalar_lenght() {
+void Vector::subtract_scalar(int scalar) 
+{
+    cout << "Ð²Ñ‹Ñ‡Ð¸Ñ‚Ð°Ð½Ð¸Ðµ " << scalar << ": ";
+    for (int i = 0; i < size; i++) 
+    {
+        vctr[i] -= scalar;
+    }
+}
+
+void Vector::multiply_scalar(int scalar) 
+{
+    cout << "ÑƒÐ¼Ð½Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ð½Ð° " << scalar << ": ";
+    for (int i = 0; i < size; i++) 
+    {
+        vctr[i] *= scalar;
+    }
+}
+
+void Vector::divide_scalar(int scalar) 
+{
+    if (scalar != 0) 
+    {
+        cout << "Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð½Ð° " << scalar << ": ";
+        for (int i = 0; i < size; i++) 
+        {
+            vctr[i] = static_cast<double>(vctr[i]) / scalar;
+        }
+    }
+    else 
+    {
+        cout << "ÐžÑˆÐ¸Ð±ÐºÐ°: Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð½Ð° Ð½Ð¾Ð»ÑŒ." << endl;
+    }
+}
+
+void Vector::find_scalar_lenght() 
+{
     int sum = 0;
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < size; i++) 
+    {
         sum += vctr[i] * vctr[i];
     }
     double length = sqrt(sum);
-    cout << "Äëèíà âåêòîðà : " << length << endl << endl;
+    cout << "Ð”Ð»Ð¸Ð½Ð° Ð²ÐµÐºÑ‚Ð¾Ñ€Ð° : " << length << endl << endl;
 }
 
 
-void vector::get_all_elements() {
-    cout << "Çíà÷åíèÿ âñåõ ýëåìåíòîâ âåêòîðà: ";
-    for (int i = 0; i < size; i++) {
+void Vector::get_all_elements() 
+{
+    cout << "Ð—Ð½Ð°Ñ‡ÐµÐ½Ð¸Ñ Ð²ÑÐµÑ… ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² Ð²ÐµÐºÑ‚Ð¾Ñ€Ð°: ";
+    for (int i = 0; i < size; i++) 
+    {
         cout << vctr[i] << " ";
     }
     cout << endl << endl;
 }
 
-void vector::set_all_elements() {
-    cout << "Ââåäèòå ýëåìåíòû âåêòîðà: ";
-    for (int i = 0; i < size; i++) {
+void Vector::set_all_elements() 
+{
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ñ‹ Ð²ÐµÐºÑ‚Ð¾Ñ€Ð°: ";
+    for (int i = 0; i < size; i++) 
+    {
         cin >> vctr[i];
     }
     cout << endl;
 }
 
-void vector::random_elements_of_vector() {
+void Vector::random_elements_of_vector()
+{
     srand(time(0));
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < size; i++) 
+    {
         vctr[i] = rand() % 10 - 0 + 1;
     }
 }
 
 
-void vector::task(vector& vctr1) {
+void Vector::task(Vector& vctr1) 
+{
     
     size = vctr1.size;
     this->vctr = new int[size];
@@ -153,26 +177,29 @@ void vector::task(vector& vctr1) {
 
     delete[] sortedX;
 
-    cout << "Ïîëó÷åííûé âåêòîð Y (óïîðÿäî÷åííûé ïî âîçðàñòàíèþ çíà÷åíèé ýëåìåíòîâ X): ";
-    for (int i = 0; i < size; i++) {
+    cout << "ÐŸÐ¾Ð»ÑƒÑ‡ÐµÐ½Ð½Ñ‹Ð¹ Ð²ÐµÐºÑ‚Ð¾Ñ€ Y (ÑƒÐ¿Ð¾Ñ€ÑÐ´Ð¾Ñ‡ÐµÐ½Ð½Ñ‹Ð¹ Ð¿Ð¾ Ð²Ð¾Ð·Ñ€Ð°ÑÑ‚Ð°Ð½Ð¸ÑŽ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ð¹ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² X): ";
+    for (int i = 0; i < size; i++)
+    {
         cout << vctr[i] << " ";
     }
 }
 
-int vector::scalar_proizv(vector& vctr1, vector& vctr2) {
+int Vector::scalar_proizv(Vector& vctr1, Vector& vctr2)
+{
     
     size = vctr2.size;
     this->vctr = new int[size];
 
     int scalarProduct = 0;
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < size; i++) 
+    {
         scalarProduct += vctr1.vctr[i] * vctr2.vctr[i];
     }
     delete[] this->vctr;
     return(scalarProduct);
 }
 
-vector& vector::operator=(const vector& vector)
+Vector& Vector::operator=(const Vector& vector)
 {
     if (this != &vector)
     {
