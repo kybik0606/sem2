@@ -4,12 +4,20 @@
 #include <string>
 #include <stdexcept>
 
-class Entity {
+class Entity 
+{
 protected:
     int Xmin, Ymin, Xmax, Ymax;
 
 public:
     Entity(int xMin, int yMin, int xMax, int yMax)
+    {
+        setCoordinates(xMin, yMin, xMax, yMax);
+    }
+
+    virtual ~Entity() {}
+
+    void setCoordinates(int xMin, int yMin, int xMax, int yMax) 
     {
         if (xMin < 0 || yMin < 0 || xMax < xMin || yMax < yMin) 
         {
@@ -21,9 +29,24 @@ public:
         Ymax = yMax;
     }
 
-    virtual ~Entity() {}
+    int getXmin() const
+    { 
+        return Xmin; 
+    }
+    int getYmin() const
+    {
+        return Ymin; 
+    }
+    int getXmax() const 
+    { 
+        return Xmax; 
+    }
+    int getYmax() const
+    { 
+        return Ymax;
+    }
 
-    virtual void display() const 
+    virtual void display() const
     {
         std::cout << "Entity: (" << Xmin << ", " << Ymin << ") - (" << Xmax << ", " << Ymax << ")\n";
     }
