@@ -1,25 +1,35 @@
-﻿#include <iostream>
+#include <iostream>
 #include <fstream>
 #include "Vector.h"
 
 using namespace std;
 
-int main() {
+int main() 
+{
     setlocale(LC_ALL, "");
-    vector vctr1;
+    Vector vctr1;
+    Vector vctr2;
     vctr1.set_vector();
     vctr1.random_elements_of_vector();
     vctr1.get_all_elements();
     vctr1.find_scalar_lenght();
-    vector vctr2;
+    cout << endl;
+
+    vctr1.add_scalar(5);
+    vctr1.get_all_elements();
+    vctr1.subtract_scalar(3);
+    vctr1.get_all_elements();
+    vctr1.multiply_scalar(2);
+    vctr1.get_all_elements();
+    vctr1.divide_scalar(2);
+    vctr1.get_all_elements();
+
     vctr2.set_vector();
     vctr2.random_elements_of_vector();
     vctr2.get_all_elements();
-    cout << endl;
-    vctr1.actions_with_scalar();
-    vctr1.find_scalar_lenght();
+    vctr2.find_scalar_lenght();
 
-    vector vctr;
+    Vector vctr;
     if (vctr1.get_size() != vctr2.get_size()) 
     {
         cout << "Векторы разных размеров. " << endl;
