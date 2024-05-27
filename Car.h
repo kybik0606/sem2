@@ -1,6 +1,10 @@
 #pragma once
 
-class Car : public Entity {
+#include <string>
+#include <stdexcept>
+
+class Car : public Entity 
+{
 private:
     std::string color;
     std::string licensePlate;
@@ -10,7 +14,35 @@ public:
     Car(int xMin, int yMin, int xMax, int yMax, const std::string& carColor, const std::string& plate, bool taxi)
         : Entity(xMin, yMin, xMax, yMax), color(carColor), licensePlate(plate), isTaxi(taxi) {}
 
-    void display() const override {
+    void setColor(const std::string& carColor) 
+    { 
+        color = carColor;
+    }
+    std::string getColor() const 
+    { 
+        return color;
+    }
+
+    void setLicensePlate(const std::string& plate) 
+    { 
+        licensePlate = plate; 
+    }
+    std::string getLicensePlate() const
+    { 
+        return licensePlate; 
+    }
+
+    void setIsTaxi(bool taxi)
+    { 
+        isTaxi = taxi; 
+    }
+    bool getIsTaxi() const 
+    { 
+        return isTaxi; 
+    }
+
+    void display() const override
+    {
         Entity::display();
         std::cout << "Type: Car\n";
         std::cout << "Color: " << color << "\n";
@@ -18,7 +50,8 @@ public:
         std::cout << "Taxi: " << (isTaxi ? "Yes" : "No") << "\n";
     }
 
-    std::string getType() const override {
+    std::string getType() const override 
+    {
         return "Car";
     }
 };
